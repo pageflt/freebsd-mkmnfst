@@ -5,7 +5,7 @@ Basic MANIFEST generator for building `pkg-create(8)` metapackages
 The recommended and "official" FreeBSD way of building and maintaining packages is through the Ports Collection, and is described in [Porter's Handbook](https://www.freebsd.org/doc/en/books/porters-handbook/index.html). If you're building packages for anyone other than yourself, you should probably stick with that approach.
 
 ## Description
-The `metapkg` script generates the minimal viable MANIFEST file, which can be used to create metapackages using `pkg-create(8)`. It expects one or more (exact) package names as arguments, which will be resolved as dependencies upon installation. Refer to the manual page of `pkg-create(8)` for information on how to extend the generated +MANIFEST file for more advanced uses, such as packaging and distributing arbitrary files with your package.
+The `metapkg` script generates the minimal viable MANIFEST file, which can be used to create metapackages using `pkg-create(8)`. It expects one or more (exact) package names as arguments, which will be resolved as dependencies upon installation. Refer to the manual page of `pkg-create(8)` for information on how to extend the generated MANIFEST file for more advanced uses, such as packaging and distributing arbitrary files with your package.
 
 ## Example usage
 Let's assume you want to build a very basic metapackage that installs other packages, say `bash`, `tmux`, `curl` and `vim-tiny`:
@@ -73,7 +73,7 @@ $ pkg create -M ./basic_metapkg
 You should now have `dep-basic-20180617_01.txz` in your current working directory. You can use this package as any other FreeBSD package:
 
 ```
-pageflt@latitude ~/Github/freebsd-metapkg $ pkg info -F dep-basic-20180617_01.txz 
+$ pkg info -F dep-basic-20180617_01.txz 
 dep-basic-20180617_01
 Name           : dep-basic
 Version        : 20180617_01
@@ -98,7 +98,7 @@ Metapackage for resolution of basic dependencies.
     - vim-tiny
 ```
 
-At this point, you can either copy the package to your custom repository (preferred), or just distribute it to your machines and install it directly:
+At this point, you can either copy the package to your custom repository (preferred), or just distribute it to your systems and install it directly:
 
 ```
 $ pkg install ./dep-basic-20180617_01.txz 
