@@ -1,17 +1,17 @@
-# freebsd-metapkg
-Basic MANIFEST generator for building `pkg-create(8)` metapackages
+# freebsd-mkmnfst
+Basic MANIFEST generator for building `pkg-create(8)` packages
 
 ## Disclaimer
 The recommended and "official" FreeBSD way of building and maintaining packages is through the Ports Collection, and is described in [Porter's Handbook](https://www.freebsd.org/doc/en/books/porters-handbook/index.html). If you're building packages for anyone other than yourself, you should probably stick with that approach.
 
 ## Description
-The `metapkg` script generates the minimal viable MANIFEST file, which can be used to create metapackages using `pkg-create(8)`. It expects one or more (exact) package names as arguments, which will be resolved as dependencies upon installation. Refer to the manual page of `pkg-create(8)` for information on how to extend the generated MANIFEST file for more advanced uses, such as packaging and distributing arbitrary files with your package.
+The `mkmnfst` script generates the minimal viable MANIFEST file, which can be used to build packages using `pkg-create(8)`. It expects one or more (exact) package names as arguments, which will be resolved as dependencies upon installation. Refer to the manual page of `pkg-create(8)` for information on how to extend the generated MANIFEST file for more advanced uses, such as packaging and distributing arbitrary files with your package.
 
 ## Example usage
-Let's assume you want to build a very basic metapackage that installs other packages, say `bash`, `tmux`, `curl` and `vim-tiny`:
+Let's assume you want to build a very basic package that installs other packages (i.e a metapackage), say `bash`, `tmux`, `curl` and `vim-tiny`:
 
 ```
-$ ./metapkg bash tmux curl vim-tiny > basic_metapkg
+$ ./mkmnfst bash tmux curl vim-tiny > basic_metapkg
 ```
 
 The `basic_metapkg` at this point contains only the dependency definition and the minimal valid structure required to produce a package. You still need to edit it and replace the `FIXME` placeholders:

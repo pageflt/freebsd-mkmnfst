@@ -1,9 +1,9 @@
 #!/bin/sh
-# Basic +MANIFEST generator for building pkg-create(8) meta-packages
-# https://github.com/pageflt/freebsd-metapkg
+# Basic MANIFEST file generator for building pkg-create(8) packages
+# https://github.com/pageflt/freebsd-mkmnfst
 #
 # Example usage:
-# $ ./metapkg tmux bash vim-tiny > my_metapackage
+# $ ./mkmnfst tmux bash vim-tiny > my_metapackage
 # ...(edit my_metapackage and replace the placeholder strings)...
 # $ pkg create -M ./my_metapackage
 
