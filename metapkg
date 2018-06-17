@@ -1,0 +1,40 @@
+#!/bin/sh
+# Basic +MANIFEST generator for building pkg-create(8) meta-packages
+# https://github.com/pageflt/freebsd-metapkg
+#
+# Example usage:
+# $ ./metapkg tmux bash vim-tiny > my_metapackage
+# ...(edit my_metapackage and replace the placeholder strings)...
+# $ pkg create -M ./my_metapackage
+
+die() {
+	echo $1 && exit 1
+}
+
+# Basic sanity checks
+which -s pkg || die "It appears that pkg(8) is missing. Aborting."
+[ "$#" -ge 1 ] || die "Usage: $0 [PACKAGES]"
+
+# Generate a minimal valid MANIFEST 
+cat <<EOF
+name: FIXME
+version: FIXME
+origin: FIXME
+comment: FIXME
+www: FIXME
+maintainer: FIXME
+prefix: /usr/local
+desc: <<EOD
+    FIXME
+EOD
+deps: {
+EOF
+for PKG in $@; do
+    ORIGIN=$(echo $(pkg search -e -S name -Q full $PKG | grep Origin | cut -d: -f2))
+    VERSION=$(echo $(pkg search -e -S name -Q full $PKG | grep Version | cut -d: -f2))
+    if [ ! -z $ORIGIN ] && [ ! -z $VERSION ]; then
+        echo "    $PKG: {origin: $ORIGIN, version: $VERSION},"
+    fi
+done
+echo "}"
+
